@@ -6,13 +6,10 @@ Renames both .exe files
 
 USE
 
-Download: https://github.com/hatvik/cod-fix/releases/download/1.0/cod_warzone_rename_both.bat
-
-Edit script and change INSTALL_LOCATION to your cod install directory:
-
-set INSTALL_LOCATION=C:\Program Files (x86)\Call of Duty Modern Warfare
-
-Run script, launch battle.net, start cod warzone and quit script once you are done playing
+* Download: https://github.com/hatvik/cod-fix/releases/download/1.0/cod_warzone_rename_both.bat
+* Edit script and change INSTALL_LOCATION to your cod install directory:
+* set INSTALL_LOCATION=C:\Program Files (x86)\Call of Duty Modern Warfare
+* Run script, launch battle.net, start cod warzone and quit script once you are done playing
 
 WINDOWS SECURITY PROMPT
 * Select more info and chose run anyway
