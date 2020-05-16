@@ -7,16 +7,20 @@ set PROCNAME="ModernWarfare.exe"
 set PROCNAME2=""Modern Warfare Launcher.exe""
  
 :: Test that install location is correct.
-if exist "%INSTALL_LOCATION%\Modern Warfare Launcher.exe" (
-    rem file exists
-) else (
-    echo Cant find "%INSTALL_LOCATION%\Modern Warfare Launcher.exe"
-	echo Did you update INSTALL_LOCATION in the script? 
-	echo Verify that "%INSTALL_LOCATION%" is correct. Exiting ...
-	pause
-	exit 1
-)
+if not exist "%INSTALL_LOCATION%\Modern Warfare Launcher.exe" (
+    :: Query registry to find install location
+	FOR /F "tokens=2* skip=2" %%a in ('reg query "HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Call of Duty Modern Warfare" /V InstallLocation ') do set INSTALL_LOCATION=%%b
+)	
 
+if exist "%INSTALL_LOCATION%\Modern Warfare Launcher.exe" (
+    REM Found it
+) else (
+        echo Cant find "%INSTALL_LOCATION%\Modern Warfare Launcher.exe"
+    	echo Did you update INSTALL_LOCATION in the script? 
+    	echo Verify that "%INSTALL_LOCATION%" is correct. Exiting ...
+	    pause
+	    exit 1
+)
  
     :initialbattlenet
 CHOICE /M "Start Battle.Net Client?"
@@ -35,14 +39,13 @@ Goto checkstart
  
  
     :startgame
-echo Start cod and wait while I check game status...
+echo Press Play in battle.net to start cod and wait while I check game status and rename files...
 tasklist /FI "IMAGENAME eq %PROCNAME%*" 2>NUL | find /I /N %PROCNAME%>NUL
 if "%ERRORLEVEL%"=="0" (
     Goto gameruns
 )
 cls
 Goto startgame
- 
  
     :exitgame
 CHOICE /M "Once you are done playing, type y here. Did you stop playing?"
