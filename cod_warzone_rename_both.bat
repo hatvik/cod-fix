@@ -1,8 +1,7 @@
 :: Rename the files "ModernWarfare.exe" and "Modern Warfare Launcher.exe" to prevent crashes
 @ECHO off
 :: Change your install path here
-:: set INSTALL_LOCATION=C:\Program Files (x86)\Call of Duty Modern Warfare
-set INSTALL_LOCATION=D:\Call of Duty Modern Warfare
+set INSTALL_LOCATION=C:\Program Files (x86)\Call of Duty Modern Warfare
 :: Leave the rest alone
 set PROCNAME="ModernWarfare.exe"
 set PROCNAME2=""Modern Warfare Launcher.exe""
