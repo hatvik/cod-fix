@@ -1,10 +1,23 @@
 :: Rename the files "ModernWarfare.exe" and "Modern Warfare Launcher.exe" to prevent crashes
 @ECHO off
 :: Change your install path here
-set INSTALL_LOCATION=C:\Program Files (x86)\Call of Duty Modern Warfare
+:: set INSTALL_LOCATION=C:\Program Files (x86)\Call of Duty Modern Warfare
+set INSTALL_LOCATION=D:\Call of Duty Modern Warfare
 :: Leave the rest alone
 set PROCNAME="ModernWarfare.exe"
 set PROCNAME2=""Modern Warfare Launcher.exe""
+ 
+:: Test that install location is correct.
+if exist "%INSTALL_LOCATION%\Modern Warfare Launcher.exe" (
+    rem file exists
+) else (
+    echo Cant find "%INSTALL_LOCATION%\Modern Warfare Launcher.exe"
+	echo Did you update INSTALL_LOCATION in the script? 
+	echo Verify that "%INSTALL_LOCATION%" is correct. Exiting ...
+	pause
+	exit 1
+)
+
  
     :initialbattlenet
 CHOICE /M "Start Battle.Net Client?"
@@ -33,7 +46,7 @@ Goto startgame
  
  
     :exitgame
-CHOICE /M "Once you are done playing, type yes here. Did you stop playing?"
+CHOICE /M "Once you are done playing, type y here. Did you stop playing?"
 if "%ERRORLEVEL%" == "1" GOTO gamequits
 if "%ERRORLEVEL%" == "2" GOTO exitgame
 @PAUSE
@@ -49,7 +62,7 @@ goto startgame
  
     :startrenameok
 cls
-ECHO File renamed successfully!
+ECHO Files renamed successfully!
 ECHO Have fun playing
 @ping -n 5 localhost> nul
 cls
@@ -64,7 +77,7 @@ goto startgame
  
     :quitrenameok
 cls
-ECHO File renamed successfully!
+ECHO Files renamed successfully!
 ECHO I hope it was fun.
 GOTO exitscript
  
